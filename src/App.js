@@ -1,9 +1,9 @@
 import React from 'react';
 import { firebase } from './firebase/firebase'
-import './App.css';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
-import SignUp from './components/SignUp'
-import LogIn from './components/LogIn'
+import Main from './routes/Main'
+import Movies from './routes/Movies'
+import Navbar from './components/Navbar'
 require('firebase/auth')
 
 
@@ -36,24 +36,13 @@ class App extends React.Component {
     
     return (
       <Router>
-        <Link to='/user'><button>kurikku</button></Link>
-        <Link to='/signup'><button>sign up</button></Link> 
-        <Link to ='/login'><button>log in</button></Link> 
-        <button onClick={this.handleLogOut}>log out</button>
-
-        logged in as {isLoggedIn ? `${this.state.user.email}` : 'nobody'}
-        
-        <br /> <br />
+        <Navbar />
 
         <Switch>
-          <Route path='/user'>
-            pee pee poo poo
+          <Route path='/' exact>
+            <Main />
           </Route>
-          <Route path='/signup'>
-            <SignUp />
-          </Route>
-          <Route path='/login'>
-            <LogIn />
+          <Route path='/movies/:type' children={<Movies />}>
           </Route>
         </Switch>
       </Router>
