@@ -21,7 +21,10 @@ class LogIn extends React.Component {
 
 	handleSubmit(e) {
 		e.preventDefault()
-		firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password).catch(err => console.log(err)).then(() => console.log('logged in'))
+		firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password).catch(err => console.log(err)).then(() => {
+			console.log('logged in')
+			return this.props.closeModal()
+		})
 	}
 
 	render() {

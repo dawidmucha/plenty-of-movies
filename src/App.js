@@ -4,7 +4,10 @@ import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
 import Main from './routes/Main'
 import Movies from './routes/Movies'
 import Navbar from './components/Navbar'
+import Settings from './components/Settings'
+import './css.css'
 require('firebase/auth')
+
 
 
 class App extends React.Component {  
@@ -15,15 +18,13 @@ class App extends React.Component {
       user: ''
     }
 
-   this.handleLogOut = this.handleLogOut.bind(this)
+   this.handleSettingsTurnOn = this.handleSettingsTurnOn.bind(this)
+
+   this.settingsRef = React.createRef()
   }
 
-  handleLogOut() {
-    firebase.auth().signOut().then(() => {
-      console.log('user logged out')
-    }).catch(err => {
-      console.log(err)
-    })
+  handleSettingsTurnOn() {
+    this.settingsRef.current.handleSettingsTurnOn()
   }
 
   render() {
@@ -35,17 +36,20 @@ class App extends React.Component {
     })
     
     return (
-      <Router>
-        <Navbar />
+      <div className='app'>
+        <Router>
+          <Navbar handleSettingsTurnOn={this.handleSettingsTurnOn} />
+          <Settings ref={this.settingsRef} />
 
-        <Switch>
-          <Route path='/' exact>
-            <Main />
-          </Route>
-          <Route path='/movies/:type' children={<Movies />}>
-          </Route>
-        </Switch>
-      </Router>
+          <Switch>
+            <Route path='/' exact>
+              <Main />
+            </Route>
+            <Route path='/movies/:type' children={<Movies />}>
+            </Route>
+          </Switch>
+        </Router>
+      </div>
     )
   }
 }

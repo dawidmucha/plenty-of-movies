@@ -4,6 +4,12 @@ import { withRouter } from 'react-router'
 class Navbar extends React.Component {
 	constructor(props) {
 		super(props)
+
+		this.handleBack = this.handleBack.bind(this)
+	}
+
+	handleBack() {
+		this.props.history.push('/')
 	}
 
 	render() {
@@ -13,20 +19,20 @@ class Navbar extends React.Component {
 		const main = (
 			<div>
 				<span>PLENTY OF MOVIES</span>
-				<button>=</button>
+				<button onClick={this.props.handleSettingsTurnOn}>=</button>
 			</div>
 		)
 
 		const movies = (
 			<div> 
-				<button>←</button>
+				<button onClick={this.handleBack}>←</button>
 				<span>{path.match(rgxMoviesSubpage) !== null ? path.match(rgxMoviesSubpage)[0].toUpperCase() : null} MOVIES</span>
-				<button>=</button>
+				<button onClick={this.props.handleSettingsTurnOn}>=</button>
 			</div>
 		)
 
 		return (
-			<div>
+			<div className='navbar'>
 				{path === '/' ? main : movies }
 			</div>
 		)
