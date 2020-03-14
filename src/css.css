@@ -54,6 +54,7 @@ body {
 
 .card {
 	background-color: grey;
+	color: white;
 	width: 45vh;
 	height: 85vh;
 	display: flex;
@@ -61,12 +62,14 @@ body {
 }
 
 .cardMain {
-	flex-grow: 4;
-	background-color: #444;
+	height: 80%;
+	background-position: top center !important;
+	background-size: contain !important;
+	background-repeat: no-repeat !important;
 }
 
 .cardBottom {
-	flex-grow: 1;
+	height: 20%;
 	background-color: #555;
 }
 
@@ -75,7 +78,7 @@ body {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	background-color: #111;
+	background-color: #222;
 }
 
 .app {

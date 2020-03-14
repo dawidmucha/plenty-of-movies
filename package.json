@@ -8,6 +8,7 @@
     "@testing-library/user-event": "^7.1.2",
     "dotenv": "^8.2.0",
     "firebase": "^7.9.3",
+    "lodash": "^4.17.15",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
     "react-draggable": "^4.2.0",
